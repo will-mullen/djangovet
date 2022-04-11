@@ -6,9 +6,9 @@ from django.http.response import JsonResponse
 from vetoffice.models import Customers, Visits
 from vetoffice.serializers import CustomersSerializer, VisitsSerializer
 
-# def home(request):
-#   context = {"name": "Spot"}
-#   return render(request, 'vetoffice/home.html', context)
+def home(request):
+  context = {"name": "Spot"}
+  return render(request, 'vetoffice/home.html', context)
 
 @csrf_exempt
 def customersApi(request, id=0):
