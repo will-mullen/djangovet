@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#headbox {
+    background-color: #66c7ff71;
+    color: black;
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Karla', sans-serif;
+}
+
+img {
+  margin-top: 40px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

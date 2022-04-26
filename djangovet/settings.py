@@ -38,9 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vetoffice.apps.VetofficeConfig',
+    'rest_framework',
+    'corsheaders',
 ]
 
+# For Sandbox allow all domains to access the APIs
+# In prod, only add domains that need to be whitelisted 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,16 +75,29 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djangovet.wsgi.application'
+# WSGI_APPLICATION = 'djangovet.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# default
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host":"mongodb://sample-app-sdv-server:TfTRAqiiEo0aY8RJu3NxryhRMpHeEC41VLSr0YZQqL0bYBoNXb7egj8qCLLEMtYenstYTuQkl1jQ57FvkOFjYw==@sample-app-sdv-server.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@sample-app-sdv-server@",
+            "name":"mytestdb",
+            "authMechanism":"SCRAM-SHA-1"
+
+        }
     }
 }
 
@@ -116,7 +136,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = '/vetoffice/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
