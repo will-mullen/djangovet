@@ -14,14 +14,15 @@ class VisitsSerializer(serializers.ModelSerializer):
 class FB_N_01_Serializer(serializers.ModelSerializer):
     class Meta:
         model=FB_N_01
-        # fields=('modelId', 'host', 'actor', 'road', 'timestamp')
-        fields= '__all__'
+        fields=('ModelID', 'Host', 'Actor', 'Road', 'Timestamp')
+        # fields= '__all__'
 
 class Red_Line_Tracking_Serializer(serializers.ModelSerializer):
 
-    combinedModelList = FB_N_01_Serializer(many=True, read_only=True)
+    CombinedModelList = FB_N_01_Serializer(many=True, read_only=True)
 
     class Meta:
         model=Red_Line_Tracking
-        # fields=('trackingId', 'combinedModelList', 'timestamp')
-        fields= '__all__'
+        fields=('TrackingID', 'CombinedModelList', 'Timestamp')
+        depth = 1
+        # fields= '__all__'

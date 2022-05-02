@@ -15,20 +15,31 @@ class Customers(models.Model):
     DateOfJoining = models.DateField() 
 
 class FB_N_01(models.Model):
-    modelID = models.AutoField(primary_key=True)
-    host = models.FloatField(null=True)
-    actor = models.FloatField(null=True)
-    road = models.FloatField(null=True)
-    timestamp = models.DateField(null=True)
+    ModelID = models.AutoField(primary_key=True)
+    Host = models.FloatField()
+    Actor = models.FloatField()
+    Road = models.FloatField()
+    Timestamp = models.DateField()
 
     def __str__(self):
         return self.modelID
 
 class Red_Line_Tracking(models.Model):
-    trackingID = models.AutoField(primary_key=True)
-    combinedModelList = models.ForeignKey(FB_N_01, on_delete=models.CASCADE, related_name='combinedModelList')
-    timestamp = models.DateField(null=True)
+    TrackingID = models.AutoField(primary_key=True)
+    # CombinedModelList = models.ForeignKey(FB_N_01, default= None, on_delete=models.CASCADE, related_name='CombinedModelList')
+    CombinedModelList = models.ManyToManyField(FB_N_01)
+    Timestamp = models.DateField()
 
     def __str__(self):
         return self.trackingID
+
+class Tracking1(models.Model):
+    name = models.CharField(max_length=10)
+
+class Model1(models.Model):
+    name = models.CharField(max_length=10)
+    modelid = models.ManyToManyField(Tracking1)
+
+    def __str__(self):
+        return self.name
 
